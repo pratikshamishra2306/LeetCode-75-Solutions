@@ -1,0 +1,21 @@
+class Solution {
+    public String removeStars(String s) {
+        StringBuilder result = new StringBuilder();
+        for(int i=0;i<s.length();i++)
+        {
+            char c = s.charAt(i); 
+            if(c!='*') 
+            {
+                 result.append(c); // if the character is not a star, it will be added to the result
+            }
+            else
+            {
+                result.deleteCharAt(result.length()-1); // if the character is a star, the character to the immediate left will be removed
+            }
+        }
+        return result.toString(); // the result is converted back to String
+    }
+}
+
+Time Complexity : O(N)
+Space Complexity : O(N)
