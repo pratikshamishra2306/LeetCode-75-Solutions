@@ -1,0 +1,34 @@
+class Solution {
+    Stack<Integer> s = new Stack();
+    public boolean  isEmpty() // to check for an empty stack
+    {
+            return s.isEmpty();
+    }
+    public int[] asteroidCollision(int[] asteroids) {
+        for(int a: asteroids)
+        {
+            if(a > 0)
+            {
+                 s.push(a); //to avoid collison in the stack
+            } 
+            else {
+                
+                while(!s.empty() && s.peek() > 0 && s.peek() < Math.abs(a))
+                { 
+                    //comparing all the positive asteroids
+                        s.pop(); 
+                }
+                if(s.empty() || s.peek() < 0) 
+                {
+                    s.push(a);
+                } 
+                else if(s.peek() == Math.abs(a))
+                //if both the asteroids have equal values
+                {
+                    s.pop();
+                }
+            }
+        }
+        return s.stream().mapToInt(i->i).toArray();//convert stack to int
+    }
+}
